@@ -1,9 +1,10 @@
-// cspell: ignore Administralos
+// cspell: ignore Administralos, Exito, toastify
 import { useForm } from "react-hook-form";
 import Error from "./Error";
 import { DraftPatient } from "../types";
 import { usePatientStore } from "../store";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function PatientForm() {
   const { addPatient, activeId, patients, updatePatient } = usePatientStore();
@@ -32,8 +33,10 @@ export default function PatientForm() {
   const registerPatient = (data: DraftPatient) => {
     if (activeId) {
       updatePatient(data);
+      toast.success("Paciente Actualizado con éxito");
     } else {
       addPatient(data);
+      toast.success("Paciente Registrado con Exito");
     }
     reset();
   };
